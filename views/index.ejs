@@ -22,7 +22,7 @@
       </nav>
 
       <div class="container">
-        <img src="images/showers.svg" class="d-block mx-lg-auto img-fluid profile " alt="Bootstrap Themes" width="360" loading="lazy">
+        <img src="images/<%= (data.current_observation.condition.text).toLowerCase() %>.svg" class="d-block mx-lg-auto img-fluid profile " alt="Bootstrap Themes" width="360" loading="lazy">
         <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
           <h1 class="display-4 fw-normal text-body-emphasis">Weather Condition</h1>
           <p class="fs-5 text-body-secondary">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
@@ -36,12 +36,12 @@
                 <h4 class="my-0 fw-normal">Location</h4>
               </div>
               <div class="card-body">
-                <h1 class="card-title pricing-card-title">$0<small class="text-body-secondary fw-light">/mo</small></h1>
+                <h1 class="card-title pricing-card-title"><%= data.location.city %></h1>
                 <ul class="list-unstyled mt-3 mb-4">
-                  <li>10 users included</li>
-                  <li>2 GB of storage</li>
-                  <li>Email support</li>
-                  <li>Help center access</li>
+                  <li><%= data.location.country %></li>
+                  <li>Latitude: <%= data.location.lat %></li>
+                  <li>Longitude: <%= data.location.long %></li>
+                  <li>Time Zone: <%= data.location.timezone_id %></li>
                 </ul>
                 
               </div>
@@ -53,12 +53,12 @@
                 <h4 class="my-0 fw-normal">Condition</h4>
               </div>
               <div class="card-body">
-                <h1 class="card-title pricing-card-title">$15<small class="text-body-secondary fw-light">/mo</small></h1>
+                <h1 class="card-title pricing-card-title"><%= data.current_observation.condition.text %></h1>
                 <ul class="list-unstyled mt-3 mb-4">
-                  <li>20 users included</li>
-                  <li>10 GB of storage</li>
-                  <li>Priority email support</li>
-                  <li>Help center access</li>
+                  <li>Temperature: <%= data.current_observation.condition.temperature %> Farenheit</li>
+                  <li>Humidity: <%= data.current_observation.atmosphere.humidity %></li>
+                  <li>Visibility: <%= data.current_observation.atmosphere.visibility %></li>
+                  <li>Pressure: <%= data.current_observation.atmosphere.pressure %>mb</li>
                 </ul>
                 
               </div>
@@ -70,12 +70,11 @@
                 <h4 class="my-0 fw-normal">Wind</h4>
               </div>
               <div class="card-body">
-                <h1 class="card-title pricing-card-title">$29<small class="text-body-secondary fw-light">/mo</small></h1>
+                <h1 class="card-title pricing-card-title"><%= data.current_observation.wind.direction %></h1>
                 <ul class="list-unstyled mt-3 mb-4">
-                  <li>30 users included</li>
-                  <li>15 GB of storage</li>
-                  <li>Phone and email support</li>
-                  <li>Help center access</li>
+                  <li>Chill Factor: <%= data.current_observation.wind.chill %></li>
+                  <li>Speed: <%= data.current_observation.wind.speed %>km/h</li>
+                 
                 </ul>
                 
               </div>
@@ -99,56 +98,51 @@
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row" class="text-start">Public</th>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
+                  <th scope="row" class="text-start"><%= data.forecasts[1].day %></th>
+                  <td><%= data.forecasts[1].text %></td>
+                  <td><%= data.forecasts[1].high %></td>
+                  <td><%= data.forecasts[1].low %></td>
                 </tr>
                 <tr>
-                  <th scope="row" class="text-start">Private</th>
-                  <td></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
+                  <th scope="row" class="text-start"><%= data.forecasts[2].day %></th>
+                  <td><%= data.forecasts[2].text %></td>
+                  <td><%= data.forecasts[2].high %></td>
+                  <td><%= data.forecasts[2].low %></td>
                 </tr>
               </tbody>
       
               <tbody>
                 <tr>
-                  <th scope="row" class="text-start">Permissions</th>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
+                  <th scope="row" class="text-start"><%= data.forecasts[3].day %></th>
+                  <td><%= data.forecasts[3].text %></td>
+                  <td><%= data.forecasts[3].high %></td>
+                  <td><%= data.forecasts[3].low %></td>
                 </tr>
                 <tr>
-                  <th scope="row" class="text-start">Sharing</th>
-                  <td></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
+                  <th scope="row" class="text-start"><%= data.forecasts[4].day %></th>
+                  <td><%= data.forecasts[4].text %></td>
+                  <td><%= data.forecasts[4].high %></td>
+                  <td><%= data.forecasts[4].low %></td>
                 </tr>
                 <tr>
-                  <th scope="row" class="text-start">Unlimited members</th>
-                  <td></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
+                  <th scope="row" class="text-start"><%= data.forecasts[5].day %></th>
+                  <td><%= data.forecasts[5].text %></td>
+                  <td><%= data.forecasts[5].high %></td>
+                  <td><%= data.forecasts[5].low %></td>
                 </tr>
                 <tr>
-                  <th scope="row" class="text-start">Extra security</th>
-                  <td></td>
-                  <td></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
+                  <th scope="row" class="text-start"><%= data.forecasts[6].day %></th>
+                  <td><%= data.forecasts[6].text %></td>
+                  <td><%= data.forecasts[6].high %></td>
+                  <td><%= data.forecasts[6].low %></td>
                 </tr>
                 <tr>
-                  <th scope="row" class="text-start">Extra security</th>
-                  <td></td>
-                  <td></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
+                  <th scope="row" class="text-start"><%= data.forecasts[7].day %></th>
+                  <td><%= data.forecasts[7].text %></td>
+                  <td><%= data.forecasts[7].high %></td>
+                  <td><%= data.forecasts[7].low %></td>
                 </tr>
-                <tr>
-                  <th scope="row" class="text-start">Extra security</th>
-                  <td></td>
-                  <td></td>
-                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"></use></svg></td>
-                </tr>
+                
               </tbody>
             </table>
           </div>
